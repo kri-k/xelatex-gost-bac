@@ -62,7 +62,7 @@
 % Размер красной строки.
 \setlength{\parindent}{1cm}
 
-% Стандартнызх символов, которые приняты в России. Для них сущетсвует аналогичные команды, но их сложнее запомнить.
+% Стандартные символы, которые приняты в России. Для них сущетсвует аналогичные команды, но их сложнее запомнить.
 % Это можно закомментировать, если удобнее писать эквивалентные команды.
 \renewcommand{\epsilon}{\ensuremath{\varepsilon}}
 \renewcommand{\phi}{\ensuremath{\varphi}}
@@ -83,6 +83,12 @@
 \newtotcounter{totappendix}
 \newtotcounter{totreferences}
 
+% Отдельные счетчики для сквозной нумерации рисунков и таблиц внутри section
+% При переходе к новому разделу, их можно обнулять, в отличие от счетчика figure,
+% т.к. он отвечает за правильное обращения по ссылкам
+\newcounter{figuresection}
+\newcounter{tablesection}
+
 % Подсчёт количества ссылок на источники.
 \pretocmd{\bibitem}{\stepcounter{totreferences}}{}{}
 
@@ -92,6 +98,10 @@
 
 % Настройка вида подписи: Рис. (номер) стоит точка.
 \captionsetup{labelsep=period, hypcap=false} 
+
+% Для представления счетчика рисунков и таблиц в виде "Рис. (номер раздела).(сквозной номер в разделе)."
+\renewcommand{\thefigure}{\thesection.\arabic{figuresection}}
+\renewcommand{\thetable}{\thesection.\arabic{tablesection}}
 
 %---------------------------------------------------------------------------------------
 % Настройка колонтитулов.
@@ -137,8 +147,9 @@
 \newcommand{\appendixtitle}{Приложение }
 
 % Настройка форматирования section, subsection, subsubsetcion, paragraph.
+% \setcounter для обнуления счетчиков при переходе к новому section
 \titleformat{\section}
-    {\filcenter\normalsize\bfseries}
+    {\filcenter\normalsize\bfseries \setcounter{figuresection}{0} \setcounter{tablesection}{0}}
     {\thesection}
     {1ex}{#1}
 
@@ -245,8 +256,8 @@
 \newcommand{\gosttableofcontents}{\newpage\tableofcontents\newpage}
 
 % Окружения для вставки рисунков, таблиц, приложений.
-\newenvironment{gostfigure}{\stepcounter{totfigures}}{}
-\newenvironment{gosttable}{\stepcounter{tottables}}{}
+\newenvironment{gostfigure}{\stepcounter{totfigures} \stepcounter{figuresection}}{}
+\newenvironment{gosttable}{\stepcounter{tottables} \stepcounter{tablesection}}{}
 \newenvironment{gostappendix}[1]{\stepcounter{totappendix}\subparagraph{#1}}{}
 
 % Окружение для библиографии.

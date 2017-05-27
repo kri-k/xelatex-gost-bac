@@ -54,28 +54,29 @@ f(x) = x^2 + x-2.
 График представлен на рисунке ниже.
 % Важно добавлять каждый рисунок в окружение gostfigure, чтобы был правильный подсчёт общего числа рисунков.
 \begin{gostfigure}
-\begin{center} 
+\begin{center}
 \begin{tikzpicture}
 \begin{axis}[domain=-3:3, width = 0.8 \textwidth, grid = both, ylabel style={rotate=-90}, xlabel = \(x\), ylabel = \(f(x)\)]
 \addplot[mark=none, thick]{x*x + x - 2};
 \end{axis}
 \end{tikzpicture}
 \captionof{figure}{График \(f(x)\).}
+\label{ris:image_1}
 \end{center}
 \end{gostfigure}
 
 Корни квадратного уравнения представлены в~таблице. вставлять таблицы.
 % Аналогично с таблицами.
 \begin{gosttable}
-\begin{center} 
+\begin{center}
 \captionof{table}{Корни квадратного уравнения}
 \begin{tabular}{|c|c|}
-\hline 
-Первый корень &  Второй корень \\ 
-\hline 
-1 & -2  \\ 
-\hline 
-\end{tabular} 
+\hline
+Первый корень &  Второй корень \\
+\hline
+1 & -2  \\
+\hline
+\end{tabular}
 \end{center}
 \end{gosttable}
 
@@ -85,11 +86,40 @@ f(x) = x^2 + x-2.
 \[
 \int x\,d\,x = \dfrac{x^2}{2} + C.
 \]
+Ссылка на рисунок из первого раздела Рис.~\ref{ris:image_1}.
+Ссылка на рисунок из второго раздела Рис.~\ref{ris:image_2}.
+
 
 \section{Второй раздел}
 \[
 \dfrac{d\,e^x}{d\,x} = e^x.
 \]
+\begin{gostfigure}
+	\begin{center}
+		\begin{tikzpicture}
+		\begin{axis}[domain=-3:3, width = 0.8 \textwidth, grid = both, ylabel style={rotate=-90}, xlabel = \(x\), ylabel = \(f(x)\)]
+		\addplot[mark=none, thick]{x*x + x - 2};
+		\end{axis}
+		\end{tikzpicture}
+		\captionof{figure}{График \(f(x)\).}
+		\label{ris:image_2}
+	\end{center}
+\end{gostfigure}
+
+Корни квадратного уравнения представлены в~таблице. вставлять таблицы.
+% Аналогично с таблицами.
+\begin{gosttable}
+	\begin{center}
+		\captionof{table}{Корни квадратного уравнения}
+		\begin{tabular}{|c|c|}
+			\hline
+			Первый корень &  Второй корень \\
+			\hline
+			1 & -2  \\
+			\hline
+		\end{tabular}
+	\end{center}
+\end{gosttable}
 
 \header{ЗАКЛЮЧЕНИЕ}
 Интересная статья по нейронным сетям \cite{Cybenko}.
